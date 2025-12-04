@@ -25,10 +25,24 @@ public class LargestNumberInArray {
         System.out.println("Largest number found in array: " + largest);
     }
 
+    public static void findLargestNumberUsingMathsClass() {
+
+        int[] myArray = {20,34,1,0,98,200};
+        int largestNumber = Integer.MIN_VALUE;
+
+        for(int num: myArray){
+            largestNumber = Math.max(num, largestNumber);
+        }
+
+        System.out.println("Found using Math max() method: "+largestNumber);
+    }
+
     // Main method — program execution starts here
     public static void main(String[] args) {
 
         // Call the method to execute the logic
         findLargestNumber();
+
+        findLargestNumberUsingMathsClass();
     }
 }
