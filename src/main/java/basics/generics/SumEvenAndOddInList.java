@@ -7,6 +7,7 @@ import java.util.Random;
 /**
  * Coding exercise (JAVA-Generics): Write a Java program to create a generic method that
  * takes a list of numbers and returns the sum of all the even and odd numbers.
+ * Source: https://www.w3resource.com/java-exercises/generic/index.php
  */
 public class SumEvenAndOddInList {
 
