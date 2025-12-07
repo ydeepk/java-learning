@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static java.lang.System.exit;
 
 /*
  * Coding exercise (JAVA-Generics): Write a Java program to create a generic method that takes a list of any type
@@ -22,7 +21,7 @@ public class ReverseGenericList {
      */
     public static <T> List<T> reverseAnyList(List<T> inputList) {
 
-        if(inputList.isEmpty() || inputList == null) {
+        if(inputList.isEmpty()) {
             System.out.println("List is empty or null");
             return inputList;
         }
