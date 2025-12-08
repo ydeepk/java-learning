@@ -24,6 +24,7 @@ public class RemoveItemFromAnyLists {
             return inputList;
         }
 
+        // New list to collect all the occurrences of target element
         List<T> toRemove = new ArrayList<>();
 
         // Collect all occurrences of the target element in the list
