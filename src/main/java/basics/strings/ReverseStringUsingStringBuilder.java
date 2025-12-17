@@ -1,4 +1,4 @@
-package basics.codingChallenges;
+package basics.strings;
 
 public class ReverseStringUsingStringBuilder {
 
