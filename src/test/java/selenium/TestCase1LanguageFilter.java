@@ -48,7 +48,7 @@ public class TestCase1LanguageFilter {
             practiceTestTableLink.click();
 
             // Language to filter
-            String languageToFilter = "Python";
+            String languageToFilter = "Java";
 
             // Select the checkbox for the desired language
             By languageFilterLocator = By.cssSelector("input[value='" + languageToFilter + "']");
@@ -57,10 +57,7 @@ public class TestCase1LanguageFilter {
 
             // Wait until at least one row with the selected language is visible
             By languageColumnLocator = By.cssSelector("tr:not([style]) td[data-col='language']");
-            wait.until(driver1 -> {
-                List<WebElement> cells = driver1.findElements(languageColumnLocator);
-                return !cells.isEmpty();
-            });
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(languageColumnLocator));
 
             // Locate all visible table rows for the selected language
             List<WebElement> languageCells = driver.findElements(languageColumnLocator);
