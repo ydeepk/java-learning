@@ -37,11 +37,11 @@ public class TestCase5NoResultsState {
             page.clickElement(page.getPracticeLinkLocator());
             page.clickElement(page.getTestTableLinkLocator());
 
-            // Apply filter for language as 'Any' and level as 'Beginner'
+            // Apply filter for language as 'Any'
             page.clickElement(page.getAnyLanguage());
-            page.clickElement(page.getBeginnerLevelCheckboxLocator());
 
-            // Deselect Intermediate level filter to check for no results case
+            // Deselect 'Beginner' and Intermediate level filter to check for no results case
+            page.clickElement(page.getBeginnerLevelCheckboxLocator());
             page.clickElement(page.getIntermediateLevelCheckboxLocator());
 
             // Apply filter for minimum enrollment to 10,000+
