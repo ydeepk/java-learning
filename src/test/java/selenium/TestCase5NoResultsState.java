@@ -34,19 +34,19 @@ public class TestCase5NoResultsState {
             driver.get(page.getBaseURL());
 
             // Navigate through the practice links to the test table page
-            page.clickElement(page.getPracticeLinkLocator());
-            page.clickElement(page.getTestTableLinkLocator());
+            page.userClicks(page.getPracticeLinkLocator());
+            page.userClicks(page.getTestTableLinkLocator());
 
             // Apply filter for language as 'Any'
-            page.clickElement(page.getAnyLanguage());
+            page.userClicks(page.getAnyLanguage());
 
             // Deselect 'Beginner' and Intermediate level filter to check for no results case
-            page.clickElement(page.getBeginnerLevelCheckboxLocator());
-            page.clickElement(page.getIntermediateLevelCheckboxLocator());
+            page.userClicks(page.getBeginnerLevelCheckboxLocator());
+            page.userClicks(page.getIntermediateLevelCheckboxLocator());
 
             // Apply filter for minimum enrollment to 10,000+
-            page.clickElement(page.getMinDropDownEnrollment());
-            page.clickElement(page.getTenThousandOptionLocator());
+            page.userClicks(page.getMinDropDownEnrollment());
+            page.userClicks(page.getTenThousandOptionLocator());
 
             // Verify that "No matching courses" message is displayed
             assertTrue(page.verifyNoMatchingCourseText(), "No matching courses message should be displayed.");
