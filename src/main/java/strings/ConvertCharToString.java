@@ -1,4 +1,4 @@
-package basics.strings;
+package strings;
 
 /**
  * Demonstrates different ways to convert a character array into a {@link String}.
