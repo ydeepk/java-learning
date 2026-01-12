@@ -7,7 +7,10 @@ public class MultiArray {
 
         // Declare and initialize a 2D integer array
         // The first row has 3 elements, the second row has 2 elements
-        int[][] twoDArray = { {5, 6, 7}, {8, 9} };
+        int[][] twoDArray = {
+                {5, 6, 7},
+                {8, 9}
+        };
 
         // Print the element at the specified row (x) and column (y)
         System.out.println(twoDArray[x][y]);
