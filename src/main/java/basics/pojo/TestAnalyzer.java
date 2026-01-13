@@ -11,23 +11,34 @@ import java.util.Map;
  * - Count test results by status (pass/fail)
  * - Get failed test case IDs
  * - Generate summary counts for pass/fail
+ * - Count passed tests per module
+ * - Convert raw nested list input to POJO list
  */
 public class TestAnalyzer {
 
     private static final String PASS = "pass";
     private static final String FAIL = "fail";
 
+    // Raw input indexes for List<List<String>> conversion.
+    private static final int INDEX_ID = 0;
+    private static final int INDEX_STATUS = 1;
+    private static final int INDEX_MODULE = 2;
+
     /**
      * Counts the number of test results that match the expected status.
-     *
-     * @param results List of executed test results
-     * @param expectedStatus Status to match (example: "pass", "fail")
-     * @return Count of test results matching the expected status
      */
     public static int countStatus(List<TestResult> results, String expectedStatus) {
+        if (results == null || expectedStatus == null) {
+            return 0;
+        }
+
         int matchCount = 0;
 
         for (TestResult result : results) {
+            if (result == null) {
+                continue;
+            }
+
             String status = result.getStatus();
 
             // Null safe and whitespace safe comparison.
@@ -39,24 +50,31 @@ public class TestAnalyzer {
         return matchCount;
     }
 
+    /** Returns total PASS count. */
     public static int getPassCount(List<TestResult> results) {
-        return countStatus(results,PASS);
+        return countStatus(results, PASS);
     }
 
+    /** Returns total FAIL count. */
     public static int getFailCount(List<TestResult> results) {
-        return countStatus(results,FAIL);
+        return countStatus(results, FAIL);
     }
 
     /**
-     * Returns a list of test case IDs where status is "fail".
-     *
-     * @param results List of executed test results
-     * @return List of failed test case IDs
+     * Returns a list of test case IDs where status is FAIL.
      */
     public static List<String> getFailedIds(List<TestResult> results) {
         List<String> failedIds = new ArrayList<>();
 
+        if (results == null) {
+            return failedIds;
+        }
+
         for (TestResult result : results) {
+            if (result == null) {
+                continue;
+            }
+
             String status = result.getStatus();
 
             if (status != null && status.trim().equalsIgnoreCase(FAIL)) {
@@ -69,101 +87,96 @@ public class TestAnalyzer {
 
     /**
      * Returns summary of pass/fail counts.
-     *
-     * @param results List of executed test results
-     * @return Map containing status as key and count as value
+     * Example output: {fail=2, pass=3}
      */
     public static Map<String, Integer> getStatusCount(List<TestResult> results) {
         Map<String, Integer> statusCount = new HashMap<>();
 
-        int failCount = getFailCount(results);
-        int passCount = getPassCount(results);
-
-        statusCount.put(FAIL, failCount);
-        statusCount.put(PASS, passCount);
+        statusCount.put(FAIL, getFailCount(results));
+        statusCount.put(PASS, getPassCount(results));
 
         return statusCount;
     }
 
+    /**
+     * Returns module-wise PASS count.
+     * Example output: {Login=1, Payments=1, Search=1}
+     */
     public static Map<String, Integer> getModulePassCount(List<TestResult> results) {
+        Map<String, Integer> modulePassCount = new HashMap<>();
 
-        Map<String, Integer> moduleStatusCount = new HashMap<>();
+        if (results == null) {
+            return modulePassCount;
+        }
 
-        for (TestResult result: results) {
+        for (TestResult result : results) {
+            if (result == null) {
+                continue;
+            }
+
             String status = result.getStatus();
             String module = result.getModule();
 
-            if(status == null || module == null) {
+            if (status == null || module == null) {
                 continue;
             }
 
             status = status.trim();
             module = module.trim();
 
-            if(module.isEmpty() || status.isEmpty()) {
+            if (status.isEmpty() || module.isEmpty()) {
                 continue;
             }
 
-
-            if(status.equalsIgnoreCase(PASS)) {
-                int currentCount = moduleStatusCount.getOrDefault(module, 0);
-                moduleStatusCount.put(module, currentCount+1);
+            // Increase module count only for PASS.
+            if (status.equalsIgnoreCase(PASS)) {
+                int currentCount = modulePassCount.getOrDefault(module, 0);
+                modulePassCount.put(module, currentCount + 1);
             }
         }
 
-
-        return moduleStatusCount;
+        return modulePassCount;
     }
 
-    /*
-    * Your returned list should include only valid rows:
-        TC01..TC05
-        TC09 (after trim)
-        So total count = 6 valid POJO objects
-    *
-    * */
-
+    /**
+     * Converts raw system input to POJO list.
+     * Only valid rows are converted.
+     */
     public static List<TestResult> toPojoList(List<List<String>> systemInput) {
-
         List<TestResult> convertedList = new ArrayList<>();
 
-        if(systemInput == null) {
+        if (systemInput == null) {
             return convertedList;
         }
 
-        for(List<String> row : systemInput) {
+        for (List<String> row : systemInput) {
 
-
-
-            // if row is null or size less than 3
-            if(row == null || row.size()<3) {
+            // Skip invalid rows.
+            if (row == null || row.size() < 3) {
                 continue;
             }
 
-            String id = row.get(0);
-            String status = row.get(1);
-            String module = row.get(2);
+            String id = row.get(INDEX_ID);
+            String status = row.get(INDEX_STATUS);
+            String module = row.get(INDEX_MODULE);
 
-            // if id is empty or null
-            if(id == null || status == null || module == null ) {
+            // Skip rows with missing values.
+            if (id == null || status == null || module == null) {
                 continue;
             }
-
 
             id = id.trim();
             status = status.trim();
             module = module.trim();
 
-            // if status is empty or null
-            if(id.isEmpty() || status.isEmpty() || module.isEmpty()) {
+            // Skip rows with blank values.
+            if (id.isEmpty() || status.isEmpty() || module.isEmpty()) {
                 continue;
             }
 
-                convertedList.add(new TestResult(id, status, module));
-
+            convertedList.add(new TestResult(id, status, module));
         }
 
         return convertedList;
     }
-
 }
