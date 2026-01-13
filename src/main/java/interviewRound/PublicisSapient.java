@@ -2,6 +2,8 @@ package interviewRound;
 
 public class PublicisSapient {
     /*
+    * What is sycn and asynchonose
+    * how does asynchrons help improve perfomance and reliablity of software appliaction?
     * Where is local variable and Instance variable stored in memory ?
     * What is OOPS ?
     * Local vs instance viable
