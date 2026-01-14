@@ -12,7 +12,7 @@ import java.util.List;
  * Input : "This is my sentence"
  * Output: "sentence my is This"
  */
-public class ReverseSentence {
+public class ReverseSentenceUsingSplitListJoin {
 
     /**
      * Program entry point.
