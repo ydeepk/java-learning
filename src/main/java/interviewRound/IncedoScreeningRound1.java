@@ -14,7 +14,7 @@ package interviewRound;
 * their strengths matches the differenceValue.
 *
 * Your task is to identify how many such unique pairs (groups) can be formed.
-* If the number of groups identified is 4 or more, the function must return 4.
+*
 *
 * Otherwise, it should return the actual count of groups found.
 * Input:
@@ -32,5 +32,15 @@ package interviewRound;
 * Count: 3 groups. Since 3 < 4, the output is 3.
 * */
 public class IncedoScreeningRound1 {
+
+    public static void main(String[] args) {
+
+        int magnetStrengthDifference = 2;
+        int[] arrayA = {1, 3, 5, 7, 10};
+
+
+
+    }
+
 
 }
