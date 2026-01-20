@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utilities.CleanRoomChallenge;
+import utilities.ScreenshotOfElement;
 import utilities.ScreenshotUtils;
 
 /**
@@ -37,6 +39,9 @@ public class BrowserStackSignUpTest {
         WebDriver driver = new SafariDriver();
 
         try {
+
+            CleanRoomChallenge.prepareDirectory();
+
             // Step 3: Navigate to the BrowserStack homepage
             driver.get("https://www.browserstack.com");
 
@@ -53,6 +58,8 @@ public class BrowserStackSignUpTest {
 
             // Step 6: Click the Sign Up button
             signUpButton.click();
+
+            ScreenshotOfElement.captureScreenshotOfElement(signUpButton);
 
             // Step 7: Wait until the URL changes to the expected Sign Up page
             wait.until(ExpectedConditions.urlToBe(
