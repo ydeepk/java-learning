@@ -1,6 +1,8 @@
 package selenium;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.io.IOException;
 import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utilities.ScreenshotUtils;
 
 /**
  * This class demonstrates a simple Selenium test
@@ -59,6 +62,11 @@ public class BrowserStackSignUpTest {
             Assert.assertEquals(
                     driver.getCurrentUrl(),
                     "https://www.browserstack.com/users/sign_up");
+
+            ScreenshotUtils.captureScreenshot(driver);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         } finally {
             // Step 9: Close the browser
             // This ensures the browser is closed even if the test fails

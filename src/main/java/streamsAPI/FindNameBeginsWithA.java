@@ -15,5 +15,11 @@ public class FindNameBeginsWithA {
                 .filter(name -> name.startsWith("A"))
                 .map(String::toUpperCase)
                 .forEach(System.out::println);
+
+        //lambda to print list names
+        names.forEach(name -> System.out.println(name));
+
+        // OR
+        names.forEach(System.out::println);
     }
 }
