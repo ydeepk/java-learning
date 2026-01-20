@@ -13,12 +13,12 @@ import org.openqa.selenium.WebDriver;
  * ScreenshotUtil provides utility methods for capturing screenshots
  * in multiple output formats using Selenium WebDriver.
  */
-public final class ScreenshotUtil {
+public final class MultiFormatChallenge {
 
     private static final String SCREENSHOT_DIR_NAME = "screenshots";
     private static final String TIMESTAMP_PATTERN = "yyyy.MM.dd_HH.mm.ss";
 
-    private ScreenshotUtil() {
+    private MultiFormatChallenge() {
         // Utility class; prevent instantiation
     }
 
