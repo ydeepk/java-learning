@@ -24,6 +24,7 @@ public class SortListUsingStream {
 
         if(originalList.equals(sortedList)) {
             System.out.println("True");
+            System.out.println(originalList);
         } else {
             System.out.println("False");
         }
