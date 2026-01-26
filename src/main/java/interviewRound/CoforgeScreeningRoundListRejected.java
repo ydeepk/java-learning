@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class CoforgeScreeningRoundListRejected {
 
-    // Test scenario, need to count number of pass test cases for the executed test cases stored in list as Id and status pass/fail.
+    // Test scenario, use POJO, need to count number of pass test cases for the executed test cases stored in list as Id and status pass/fail.
     //Note: if not aware of streams, then feel free to use the Loops.
 
    public static void main(String[] args) {

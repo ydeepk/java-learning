@@ -1,5 +1,7 @@
 package strings;
 
+import utilities.ExcelUtils;
+
 import java.util.Arrays;
 
 /**
@@ -30,5 +32,7 @@ public class StringToChar {
 
         // Prints the entire character array in a readable format
         System.out.println(Arrays.toString(characters));
+
+        ExcelUtils.readExcelFile();
     }
 }

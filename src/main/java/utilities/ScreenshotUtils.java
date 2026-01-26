@@ -22,6 +22,11 @@ public class ScreenshotUtils {
 
         // capture screenshot and keep in sourcefile
         TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+
+        if(takesScreenshot instanceof WebDriver) {
+
+        }
+
         File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
 
         // create string path and destination where to store the screenshots
