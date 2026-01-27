@@ -15,13 +15,10 @@ public class IsPallindrome {
 
 
         while(left < right) {
-
             if(arr[left] != arr[right]) {
                 return false;
             }
-
             System.out.println(left+" matched "+right);
-
             left++;
             right--;
         }
